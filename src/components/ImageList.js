@@ -11,12 +11,23 @@ const ImageList = () => {
                 const response = await axios.get('https://your-api-id.execute-api.region.amazonaws.com/dev/images');
                 setImages(response.data);
             } catch (error) {
+                setError('Error fetching images');
                 console.error('Error fetching images:', error);
+            } finally { 
+                setLoading(false);
             }
         };
 
         fetchImages();
     }, []);
+
+    if (loading) {
+        return <p>Loading images...</p>;
+    }
+
+    if (error) {
+        return <p>{error}</p>;
+    }
 
     return (
         <div>
