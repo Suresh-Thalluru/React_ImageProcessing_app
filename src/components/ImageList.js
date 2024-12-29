@@ -4,6 +4,8 @@ import './ImageList.css';
 
 const ImageList = () => {
     const [images, setImages] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchImages = async () => {
